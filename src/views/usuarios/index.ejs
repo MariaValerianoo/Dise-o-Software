@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usuarios – Llantas DC</title>
+
+  <!-- Bootstrap CSS + Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  >
+
+  <%- include('../partials/head') %>
+
+  <!-- Estilos inline iguales a new/edit -->
+  <style>
+    body { overflow-x: hidden; }
+    .sidebar { min-width: 200px; }
+    main { flex: 1; background: #f8f9fa; }
+  </style>
+</head>
+<body class="d-flex">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <%- include('../partials/navigation') %>
+  </div>
+
+  <!-- Main Content Usuarios -->
+  <main class="flex-fill p-4">
+    <div class="container-fluid">
+      <!-- Cabecera con título y botón Agregar -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="mb-0 text-danger">Usuarios</h1>
+        <a href="/usuarios/new" class="btn btn-danger">
+          <i class="bi bi-plus-lg"></i> Agregar Usuario
+        </a>
+      </div>
+
+      <!-- Formulario de búsqueda -->
+      <form action="/usuarios" method="GET" class="d-flex mb-4">
+        <input
+          type="text" name="q"
+          class="form-control me-2 rounded-pill"
+          placeholder="Buscar..."
+          value="<%= typeof q !== 'undefined' ? q : '' %>"
+        >
+        <button type="submit" class="btn btn-outline-secondary">
+          <i class="bi bi-search"></i> Buscar
+        </button>
+      </form>
+
+      <!-- Lista de usuarios -->
+      <div class="list-group">
+        <% usuarios.forEach(u => { %>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="mb-1">
+                <%= u.nombreUsuario %> <%= u.apellidoUsuario %>
+              </h5>
+              <small class="text-muted">
+                <i class="bi bi-envelope"></i> <%= u.correoUsuario %>
+                &nbsp;
+                <i class="bi bi-phone"></i> <%= u.telefonoUsuario %>
+              </small>
+            </div>
+            <div class="btn-group">
+              <!-- Editar -->
+              <a href="/usuarios/<%= u._id %>/edit" class="btn btn-warning btn-sm me-1">
+
+                <i class="bi bi-pencil"></i> Editar
+              </a>
+              <!-- Eliminar -->
+              <form
+                action="/usuarios/<%= u._id %>?_method=DELETE"
+                method="POST"
+                style="display:inline"
+              >
+                <button class="btn btn-danger btn-sm">
+                  <i class="bi bi-trash"></i> Eliminar
+                </button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  ></script>
+</body>
+</html>

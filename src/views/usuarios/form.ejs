@@ -1,0 +1,37 @@
+<% /* Campos comunes a new & edit */ %>
+<div class="mb-3">
+  <label for="nombre" class="form-label">Nombre</label>
+  <input
+    type="text" id="nombre" name="nombreUsuario"
+    class="form-control rounded-pill"
+    value="<%= usuario ? usuario.nombreUsuario : '' %>"
+    required
+  >
+</div>
+<div class="mb-3">
+  <label for="apellido" class="form-label">Apellido</label>
+  <input
+    type="text" id="apellido" name="apellidoUsuario"
+    class="form-control rounded-pill"
+    value="<%= usuario ? usuario.apellidoUsuario : '' %>"
+    required
+  >
+</div>
+<div class="mb-3">
+  <label for="correo" class="form-label">Correo</label>
+  <input
+    type="email" id="correo" name="correoUsuario"
+    class="form-control rounded-pill"
+    value="<%= usuario ? usuario.correoUsuario : '' %>"
+    required
+  >
+</div>
+<div class="mb-3">
+  <label for="telefono" class="form-label">Teléfono</label>
+  <input
+    type="text" id="telefono" name="telefonoUsuario"
+    class="form-control rounded-pill"
+    value="<%= usuario ? usuario.telefonoUsuario : '' %>"
+    required
+  >
+</div>

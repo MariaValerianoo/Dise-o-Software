@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Llanta – Llantas DC</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { overflow-x: hidden; display: flex; }
+    .sidebar { min-width: 200px; background-color: #dc3545; color: white; }
+    main { flex: 1; background: #f8f9fa; }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <%- include('../partials/navigation') %>
+  </div>
+
+  <main class="flex-fill p-4">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="mb-0 text-danger">Agregar Llanta</h1>
+        <a href="/llantas" class="btn btn-secondary">
+          <i class="bi bi-arrow-left"></i> Volver
+        </a>
+      </div>
+
+      <div class="card shadow-sm mx-auto" style="max-width: 600px;">
+        <div class="card-body">
+          <% if (error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+          <% } %>
+          <form action="/llantas" method="POST">
+            <div class="mb-3">
+              <label for="marca" class="form-label">Marca</label>
+              <input type="text" id="marca" name="marca" class="form-control" required value="<%= llanta?.marca || '' %>">
+            </div>
+            <div class="mb-3">
+              <label for="medida" class="form-label">Medida</label>
+              <input type="text" id="medida" name="medida" class="form-control" required value="<%= llanta?.medida || '' %>">
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio</label>
+              <input type="number" id="precio" name="precio" class="form-control" required value="<%= llanta?.precio || '' %>">
+            </div>
+            <button type="submit" class="btn btn-danger w-100">Crear Llanta</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
